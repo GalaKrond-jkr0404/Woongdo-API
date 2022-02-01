@@ -12,19 +12,19 @@
 
 | # | Path | Method | Docs | Description |
 | -- | -- | -- | -- | -- |
-| 1 | `/api/login` | POST | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/user-login.md">Click Here</a> | '웅도' 로그인 & 사용자 토큰 조회 |
-| 2 | `/api/register` | POST | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/user-register.md">Click Here</a> | '웅도' 회원가입 |
-| 3 | `/api/pwReset` | POST | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/user-pwReset.md">Click Here</a> | '웅도' 사용자 비밀번호 변경 |
-| 4 | `/api/withDraw` | DELETE | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/user-withDraw.md">Click Here</a> | '웅도' 사용자 탈퇴 |
-| 5 | `/api/meal` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/school-meal.md">Click Here</a> | '단대라이프' 급식 정보 조회 |
-| 6 | `/api/timetable` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/school-timetable.md">Click Here</a> | '단대라이프' 시간표 정보 조회 |
-| 7 | `/api/addBook` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/book-addBook.md">Click Here</a> | '단대라이브러리' 새로운 책 추가 |
-| 8 | `/api/deleteBook` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/book-deleteBook.md">Click Here</a> | '단대라이브러리' 기존 책 삭제 |
-| 9 | `/api/history` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/book-history.md">Click Here</a> | '단대라이브러리' 사용자 대출 내역 조회 |
-| 10 | `/api/info` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/book-info.md">Click Here</a> | '단대라이브러리' DB 정보 조회 |
-| 11 | `/api/loanAction` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/book-loanAction.md">Click Here</a> | '단대라이브러리' 책 대출 신청 |
-| 12 | `/api/returnAction` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/book-returnAction.md">Click Here</a> | '단대라이브러리' 책 반납 |
-| 13 | `/api/search` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/main/docs/book-search.md">Click Here</a> | '단대라이브러리' 책 정보 조회 |
+| 1 | `/api/login` | POST | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/user-login.md">Click Here</a> | '웅도' 로그인 & 사용자 토큰 조회 |
+| 2 | `/api/register` | POST | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/user-register.md">Click Here</a> | '웅도' 회원가입 |
+| 3 | `/api/pwReset` | POST | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/user-pwReset.md">Click Here</a> | '웅도' 사용자 비밀번호 변경 |
+| 4 | `/api/withDraw` | DELETE | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/user-withDraw.md">Click Here</a> | '웅도' 사용자 탈퇴 |
+| 5 | `/api/meal` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/school-meal.md">Click Here</a> | '단대라이프' 급식 정보 조회 |
+| 6 | `/api/timetable` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/school-timetable.md">Click Here</a> | '단대라이프' 시간표 정보 조회 |
+| 7 | `/api/addBook` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/book-addBook.md">Click Here</a> | '단대라이브러리' 새로운 책 추가 |
+| 8 | `/api/deleteBook` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/book-deleteBook.md">Click Here</a> | '단대라이브러리' 기존 책 삭제 |
+| 9 | `/api/history` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/book-history.md">Click Here</a> | '단대라이브러리' 사용자 대출 내역 조회 |
+| 10 | `/api/info` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/book-info.md">Click Here</a> | '단대라이브러리' DB 정보 조회 |
+| 11 | `/api/loanAction` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/book-loanAction.md">Click Here</a> | '단대라이브러리' 책 대출 신청 |
+| 12 | `/api/returnAction` | PUT | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/book-returnAction.md">Click Here</a> | '단대라이브러리' 책 반납 |
+| 13 | `/api/search` | GET | <a href="https://github.com/DKSH-WoongDo/Woongdo-API/blob/master/docs/book-search.md">Click Here</a> | '단대라이브러리' 책 정보 조회 |
 
 <hr />
 <div align="center">
