@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 
-import { jwtTokenType, bookDataDBType } from '../types/';
+import { jwtTokenType } from '../types/';
 import { jwtToken } from '../token';
 import { sql } from '../dbHandle';
 

@@ -9,18 +9,26 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
-    const { userID, userPW, userName, userBirthday } = Object.assign(req.body, req.query);
+    const { userID, userPW, userName, userBirthday }:
+        { userID: string, userPW: string, userName: string, userBirthday: string } = Object.assign(req.body, req.query);
 
     try {
-        let fetchAuth = await axios({
-            method: 'POST',
-            url: 'http://woongdo-auth.kro.kr:8080',
+        const response = await axios.post('https://senhcs.eduro.go.kr/v2/findUser', JSON.stringify({
+            name: cryptoHandle.RSA_ENC(cryptoHandle.AES_DEC(userName)),
+            birthday: cryptoHandle.RSA_ENC(cryptoHandle.AES_DEC(userBirthday)),
+            loginType: 'school',
+            orgCode: 'B100000581',
+            stdntPNo: null,
+        }), {
             headers: {
-                userName, userBirthday
-            },
+                'Content-Type': 'application/json; charset=utf-8',
+                Accept: 'application/json',
+                'User-Agent':
+                    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36',
+            }
         });
 
-        let decodeValue: { isError: boolean, message: string } = fetchAuth.data;
+        const decodeValue: { isError: boolean, message: string } = response.data;
 
         if (decodeValue.isError) {
             return res.json({
