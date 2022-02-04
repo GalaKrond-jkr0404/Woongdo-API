@@ -19,7 +19,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
         });
 
     try {
-        const response = await axios.post(process.env.authAPI, { userName: cryptoHandle.AES_ENC(userName), userBirthday: cryptoHandle.AES_ENC(userBirthday) });
+        const response = await axios.post(process.env.authAPI, { userName, userBirthday });
 
         if (response.data.isError)
             return res.json({
