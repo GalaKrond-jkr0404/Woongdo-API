@@ -26,13 +26,19 @@ router.delete('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 
     try {
-        const rows = await sql(`SELECT * FROM ${process.env.MYSQL_DB}.user WHERE userID=?`, [returnValue.id]);
-        if (Array.isArray(rows) && rows.length === 0)
+        const query1 = await sql(`SELECT * FROM ${process.env.MYSQL_DB}.user WHERE userID=?`, [returnValue.id]);
+        if (Array.isArray(query1) && query1.length === 0)
             return res.json({
                 isError: true,
                 message: '사용자가 존재하지 않습니다.',
             });
-        sql(`DELETE FROM ${process.env.MYSQL_DB}.user WHERE userID=?`, [returnValue.id]);
+        const query2: any = await sql(`DELETE FROM ${process.env.MYSQL_DB}.user WHERE userID=?`, [returnValue.id]);
+        if (query2?.affectedRows == 0) {
+            return res.json({
+                isError: true,
+                message: '회원님을 탈퇴 처리하지 못했습니다.'
+            });
+        }
         return res.json({
             isError: false,
             message: '회원님을 탈퇴 처리했습니다.',

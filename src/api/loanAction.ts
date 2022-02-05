@@ -82,7 +82,7 @@ router.put('/', async (req: Request, res: Response, next: NextFunction) => {
         let endMonth: string = ('0' + (endLine.getMonth() + 1)).slice(-2);
         let endDate: string = ('0' + endLine.getDate()).slice(-2);
 
-        sql(`INSERT INTO ${process.env.MYSQL_DB}.bookHistory VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, 1)`,
+        const query3: any = await sql(`INSERT INTO ${process.env.MYSQL_DB}.bookHistory VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, 1)`,
             [cryptoHandle.AES_DEC(returnValue.name),
             cryptoHandle.AES_DEC(returnValue.id),
             query2[0]?.title,
@@ -91,7 +91,14 @@ router.put('/', async (req: Request, res: Response, next: NextFunction) => {
             query2[0]?.bookID,
             `${today.getFullYear()}-${('0' + (today.getMonth() + 1)).slice(-2)}-${today.getDate()}`,
             `${endYear}-${endMonth}-${endDate}`]);
-        sql(`UPDATE ${process.env.MYSQL_DB}.bookData SET status=1 WHERE bookID=?`, [bookID]);
+        const query4: any = await sql(`UPDATE ${process.env.MYSQL_DB}.bookData SET status=1 WHERE bookID=?`, [bookID]);
+
+        if (query3?.affectedRows == 0 || query4?.affectedRows == 0) {
+            return res.json({
+                isError: true,
+                message: '선택한 책을 대출하지 못했습니다.'
+            });
+        }
 
         return res.json({
             isError: false,

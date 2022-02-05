@@ -38,9 +38,15 @@ router.put('/', async (req: Request, res: Response) => {
     }
 
     try {
-        const rows = await sql(`SELECT * FROM ${process.env.MYSQL_DB}.bookData WHERE bookID=?`, [bID]);
-        if (Array.isArray(rows) && rows.length === 0) {
-            sql(`INSERT INTO ${process.env.MYSQL_DB}.bookData VALUES(NULL, ?, ?, ?, ?, 0)`, [bTitle, bAuthor, bCompany, bID]);
+        const query1 = await sql(`SELECT * FROM ${process.env.MYSQL_DB}.bookData WHERE bookID=?`, [bID]);
+        if (Array.isArray(query1) && query1.length === 0) {
+            const query2: any = await sql(`INSERT INTO ${process.env.MYSQL_DB}.bookData VALUES(NULL, ?, ?, ?, ?, 0)`, [bTitle, bAuthor, bCompany, bID]);
+            if (query2?.affectedRows == 0) {
+                return res.json({
+                    isError: true,
+                    message: '책을 추가하지 못했습니다.'
+                });
+            }
             return res.json({
                 isError: false,
                 message: '새로운 책을 추가했습니다.',

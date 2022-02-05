@@ -57,8 +57,7 @@ router.put('/', async (req: Request, res: Response, next: NextFunction) => {
             const query2: any = await sql(`UPDATE ${process.env.MYSQL_DB}.bookHistory SET status=0 WHERE userID=? and bookID=?`, [cryptoHandle.AES_DEC(userID), bookID]);
             if (query2?.affectedRows != 0) {
                 sql(`UPDATE ${process.env.MYSQL_DB}.bookData SET status=0 WHERE bookID=?`, [bookID]);
-            }
-            else {
+            } else {
                 return res.json({
                     isError: true,
                     message: '선택한 책을 반납하지 못했습니다.'

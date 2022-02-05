@@ -29,21 +29,27 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 
     try {
-        const rows: any = await sql(`SELECT * FROM ${process.env.MYSQL_DB}.user WHERE userID=?`, [cryptoHandle.AES_DEC(returnValue.id)]);
-        if (Array.isArray(rows) && rows.length === 0)
+        const query1: any = await sql(`SELECT * FROM ${process.env.MYSQL_DB}.user WHERE userID=?`, [cryptoHandle.AES_DEC(returnValue.id)]);
+        if (Array.isArray(query1) && query1.length === 0)
             return res.json({
                 isError: true,
                 message: '사용자가 존재하지 않습니다.',
             });
-        if (cryptoHandle.SHA256(cryptoHandle.AES_DEC(old_userPW)) != rows[0].userPW)
+        if (cryptoHandle.SHA256(cryptoHandle.AES_DEC(old_userPW)) != query1[0].userPW)
             return res.json({
                 isError: true,
                 message: '현재 비밀번호가 옳지 않습니다.',
             });
-        sql(`UPDATE ${process.env.MYSQL_DB}.user SET userPW=? WHERE userID=?`, [cryptoHandle.SHA256(cryptoHandle.AES_DEC(new_userPW)), cryptoHandle.AES_DEC(returnValue.id)]);
+        const query2: any = await sql(`UPDATE ${process.env.MYSQL_DB}.user SET userPW=? WHERE userID=?`, [cryptoHandle.SHA256(cryptoHandle.AES_DEC(new_userPW)), cryptoHandle.AES_DEC(returnValue.id)]);
+        if (query2?.affectedRows == 0) {
+            return res.json({
+                isError: true,
+                message: '비밀번호를 변경하지 못했습니다.'
+            });
+        }
         return res.json({
             isError: false,
-            message: '비밀번호를 성공적으로 변경했습니다.',
+            message: '비밀번호를 변경했습니다.',
         });
     } catch (err) {
         return res.json({
