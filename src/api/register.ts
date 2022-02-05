@@ -37,7 +37,8 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             })
         }
 
-        const query3: any = await sql(`INSERT INTO ${process.env.MYSQL_DB}.user VALUES('S', ?, ?, ?, ?)`, [cryptoHandle.AES_DEC(userName), cryptoHandle.AES_DEC(userID), cryptoHandle.SHA256(userPW), cryptoHandle.AES_DEC(userBirthday)]);
+        const query3: any = await sql(`INSERT INTO ${process.env.MYSQL_DB}.user VALUES('S', ?, ?, ?, ?)`,
+            [cryptoHandle.AES_DEC(userName), cryptoHandle.AES_DEC(userID), cryptoHandle.SHA256(cryptoHandle.AES_DEC(userPW)), cryptoHandle.AES_DEC(userBirthday)]);
         if (query3?.affectedRows == 0) {
             return res.json({
                 isError: true,
