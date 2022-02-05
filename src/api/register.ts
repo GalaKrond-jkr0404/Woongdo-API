@@ -12,14 +12,8 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     const { userID, userPW, userName, userBirthday }:
         { userID: string, userPW: string, userName: string, userBirthday: string } = Object.assign(req.body, req.query);
 
-    if (!userID || !userPW || !userName || !userBirthday)
-        return res.json({
-            isError: true,
-            message: '필수 옵션이 비어있습니다.'
-        });
-
     try {
-        const response = await axios.post(process.env.authAPI, { userName, userBirthday });
+        const response = await axios.post(process.env.AUTH_API, { userName, userBirthday });
 
         if (response.data.isError)
             return res.json({
