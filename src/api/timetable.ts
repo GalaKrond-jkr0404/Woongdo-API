@@ -49,7 +49,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
         'SD_SCHUL_CODE=7011489&' +
         `GRADE=${_glade}&` +
         `CLASS_NM=${_class}&` +
-        `AY=2021&` +
+        `AY=2022&` +
         `TI_FROM_YMD=${_date.split('-').join('')}&` +
         `TI_TO_YMD=${_date.split('-').join('')}`
     );
