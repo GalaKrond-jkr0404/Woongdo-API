@@ -1,6 +1,6 @@
 <h1>[Woongdo API] - '단대라이프' 시간표 정보 조회</h1>
 
-> ## `GET` /api/meal
+> ## `GET` /api/timetable
 
 - 이 API를 사용하는 일반적인 사용자
     - `setGrade` 값을 가진 학년의, `setClass` 값을 가진 반의, `setDate` 값을 가진 요일의 시간표 정보를 조회한다.

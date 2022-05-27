@@ -55,7 +55,8 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     );
 
     try {
-        const fetchTimeTable = await axios.get(getAPIurl(setGrade, setClass, getWeekDateString()[getEncodeDayString(setDate)]));
+        const requestDate = getWeekDateString()[getEncodeDayString(setDate)]
+        const fetchTimeTable = await axios.get(getAPIurl(setGrade, setClass, requestDate));
 
         let arr: string[] = [];
 
@@ -65,6 +66,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
         return res.json({
             isError: false,
             message: '데이터를 로드하는데 성공했습니다.',
+            requestDate,
             grade: setGrade,
             class: setClass,
             timeTable: arr
