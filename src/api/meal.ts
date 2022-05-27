@@ -55,7 +55,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
             const mealMenu = fetchMealData.data['mealServiceDietInfo'][1]['row'][i]['DDISH_NM'] as string;
 
             mealMenu.split(/<br\/>/g).forEach((element) => {
-                returnArray.push(element.replace(/[0-9]+[.]/g, ''));
+                returnArray.push(element.replace(/\([^)]+\)/g, ''));
             });
 
             arr.push({
