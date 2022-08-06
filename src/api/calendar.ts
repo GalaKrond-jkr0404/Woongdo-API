@@ -18,9 +18,9 @@ router.put('/', async (req: Request, res: Response) => {
         });
     }
 
-    const {calendarID, title, s_date, e_date, content}: {calendarID: string, title: string, s_date: string, e_date: string, content: string} = Object.assign(req.body, req.query);
+    const {calendarID}: {calendarID: string} = Object.assign(req.body, req.query);
 
-    if (!title || !s_date || !e_date || !content) {
+    if (!calendarID) {
         return res.json({
             isError: true,
             message: '입력하지 않은 값들이 있습니다.',
@@ -38,7 +38,7 @@ router.put('/', async (req: Request, res: Response) => {
 
     try {
         await sql(`DELETE FROM ${process.env.MYSQL_DB}.calendar where title=? AND sData=? AND eData=? AND content=?`,
-        [title, s_date, e_date, content, calendarID, returnValue.id]);
+        [calendarID, returnValue.id]);
        
         return res.json({
             isError: false,
@@ -52,5 +52,3 @@ router.put('/', async (req: Request, res: Response) => {
         })
     }
 });
-
-export = router;
